@@ -12,7 +12,7 @@ const storyRouter=require('./routes/storyRouter')
 const messageRouter=require('./routes/messageRouter')
 const notificationRouter=require('./routes/notification')
 app.get('/',(req,res)=>{
-    res.send('server is running')
+    res.send('server is running successfully')
 })
 app.use(fileUpload({
     useTempFiles:true,
