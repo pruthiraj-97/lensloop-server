@@ -1,0 +1,11 @@
+const express=require('express')
+const {isAuthenticate}=require('../middleware/isAuthenticate')
+const router=express.Router()
+const {createPost,likePost,deletePost,getPost,dislikePost,getMyPost}=require('../controlers/post')
+router.post('/createpost',isAuthenticate,createPost)
+router.post('/likepost/:id',isAuthenticate,likePost)
+router.delete('/deletepost/:id',isAuthenticate,deletePost)
+router.post('/dislikepost/:id',isAuthenticate,dislikePost)
+router.get('/getposts',getPost)
+router.get('/getmypost/:id',isAuthenticate,getMyPost)
+module.exports=router

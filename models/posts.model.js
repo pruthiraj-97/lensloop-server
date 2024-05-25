@@ -1,0 +1,39 @@
+const mongoose=require('mongoose')
+const postSchema=new mongoose.Schema({
+    title:{
+        type:String,
+        require:true
+    },
+    description:{
+        type:String
+    },
+    post:{
+        type:String,
+        require:true
+    },
+    likes:[
+        {
+          type:mongoose.Schema.Types.ObjectId,
+          ref:'User'
+        }
+    ],
+    dislikes:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'User'
+        }
+    ],
+    comments:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'Comment'
+        }
+    ],
+    userId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'User',
+        require:true
+    }
+},{timestamps:true})
+
+module.exports=mongoose.model("Post",postSchema)
