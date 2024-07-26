@@ -7,6 +7,7 @@ exports.addComment=async (req,res)=>{
         const {comment}=req.body
         if(!comment){
             return res.status(400).json({
+                status:400,
                 success:false,
                 message:'comment is required'
             })
@@ -33,12 +34,14 @@ exports.addComment=async (req,res)=>{
                                         select:'username image'
                                     })
         return res.status(200).json({
+            status:200,
             success:true,
             message:'comment added',
             post
         })
     } catch (error) {
         return res.status(400).json({
+            status:500,
             success:false,
             message:'error in adding comment'
         })
@@ -56,12 +59,14 @@ exports.editComment=async (req,res)=>{
             }
         })
         return res.status(200).json({
+            status:200,
             success:true,
             message:'comment updated',
             comment:updatePost
         })
     } catch (error) {
-        return res.status(400).json({
+        return res.status(500).json({
+            status:500,
             success:false,
             message:'error in updating comment'
         })
@@ -92,6 +97,7 @@ exports.deleteComment=async (req,res)=>{
             select:'username image'
         })
         return res.status(200).json({
+            status:200,
             success:true,
             message:'comment deleted',
             comment:deleteComment,
@@ -99,6 +105,7 @@ exports.deleteComment=async (req,res)=>{
         })
     } catch (error) {
         return res.status(400).json({
+            status:500,
             success:false,
             message:'error in deleting comment'
         })

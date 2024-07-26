@@ -7,6 +7,7 @@ exports.signup=async (req,res)=>{
         const {username,email,password,accountType}=req.body
         if(!username || !email || !password){
             return res.status(400).json({
+                status:400,
                 success:false,
                 message:"All fields are required"
             })
@@ -16,6 +17,7 @@ exports.signup=async (req,res)=>{
         })
        if(userExist){
         return res.status(400).json({
+            status:400,
             success:false,
             message:"user already exist"
         })
@@ -32,12 +34,14 @@ exports.signup=async (req,res)=>{
      })
 
      return res.status(200).json({
+        status:200,
         success:true,
         message:"user created successfully",
      })
 
     } catch (error) {
         return res.status(500).json({
+            status:500,
             success:false,
             message:`Internal server error ${error}`
         })
@@ -49,6 +53,7 @@ exports.login=async (req,res)=>{
         const {email,password}=req.body
         if(!email || !password){
             return res.status(400).json({
+                status:400,
                 success:false,
                 message:"All fields are required"
             })
@@ -59,12 +64,14 @@ exports.login=async (req,res)=>{
        if(!userExist){
         return res.status(400).json({
             success:false,
+            status:400,
             message:"Invalid credentials"
         })
        }
        const result=await bcrypt.compareSync(password,userExist.password)
        if(!result){
         return res.status(400).json({
+            status:400,
             success:false,
             message:"Invalid credentials"
         })
@@ -80,6 +87,7 @@ exports.login=async (req,res)=>{
        
        return res.status(200).json({
         success:true,
+        status:200,
         message:"user logged in successfully",
         token,
         user:userExist
@@ -87,6 +95,7 @@ exports.login=async (req,res)=>{
 
     } catch (error) {
         return res.status(500).json({
+            status:500,
             success:false,
             message:"Internal server error"
         })
@@ -112,11 +121,13 @@ exports.getUserprofile=async (req,res)=>{
                                                   })
         userProfile.password=null
             return res.status(200).json({
+                status:200,
                 success:true,
                 userProfile
             })
     }catch (error) {
         return res.status(500).json({
+            status:500,
             success:false,
             message:"Internal server error"
         })

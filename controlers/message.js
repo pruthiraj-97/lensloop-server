@@ -18,11 +18,13 @@ exports.getMessages=async(req,res)=>{
             }
         })
         return res.status(200).json({
+            status:200,
             success:true,
             messages:messages.messages
         })
     } catch (error) {
-        return res.status(400).json({
+        return res.status(500).json({
+            status:500,
             success:false,
             message:error
         })
@@ -82,17 +84,18 @@ exports.addMessage=async (req,res)=>{
             const socketid=global.userSocketMap[id]
             io.to(socketid).emit('message',sendMessage)
         }
-        
-        
-        
+
         return res.status(200).json({
             success:true,
+            status:200,
             messages:messages.messages,
             users:messages.users
+            
         })
         
     } catch (error) {
-        return res.status(400).json({
+        return res.status(500).json({
+            status:500,
             success:false,
             message:error
         })

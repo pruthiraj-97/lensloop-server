@@ -32,11 +32,13 @@ exports.createPost=async (req,res)=>{
         })
         return res.status(200).json({
             success:true,
+            status:200,
             message:"post created successfully"
         })
     } catch (error) {
-        return res.status(400).json({
+        return res.status(500).json({
             success:false,
+            status:500,
             message:"error in creating post"
         })
     }
@@ -111,14 +113,16 @@ exports.likePost=async (req,res)=>{
         }
         return res.status(200).json({
             success:true,
+            status:200,
             message:"post liked",
             post
         })
 
 
     } catch (error) {
-        return res.status(400).json({
+        return res.status(500).json({
             success:false,
+            status:500,
             message:"error in liking post"
         })
     }
@@ -141,6 +145,7 @@ exports.deletePost=async (req,res)=>{
         })
         return res.status(200).json({
             success:true,
+            status:200,
             message:"post deleted"
         })
     } catch (error) {
@@ -168,10 +173,12 @@ exports.getPost=async (req,res)=>{
                         })               
         return res.status(200).json({
             success:true,
-            posts
+            posts,
+            status:200,
         })
     } catch (error) {
-        return res.status(400).json({
+        return res.status(500).json({
+            status:500,
             success:false,
             message:"error in getting posts"
         })
