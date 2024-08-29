@@ -32,8 +32,16 @@ app.use('/api/story',storyRouter)
 app.use('/api/message',messageRouter)
 app.use('/api/notification',notificationRouter)
 
-server.listen(process.env.PORT,()=>{
-    console.log(`server is running on port ${process.env.PORT}`)
-})
-connectDB()
-connectCloudinary()
+function startServer(){
+    try {
+        server.listen(process.env.PORT,()=>{
+            console.log(`server is running on port ${process.env.PORT}`)
+        })
+        connectDB()
+        connectCloudinary()
+    } catch (error) {
+        console.log("error in server starting ",error)
+        process.exit(1)
+    }
+}
+startServer()

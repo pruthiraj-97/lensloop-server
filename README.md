@@ -89,12 +89,12 @@ Component Structure: Outline the structure of your React frontend, including com
 
 ## Setup
 
-1. Clone the repository.
+1. Clone the server repository : `git clone https://github.com/pruthiraj-97/lensloop-server.git`
 2. Install dependencies: `npm install`
-3. Start the server: `npm start`
-4. Start the client: `cd client && npm start`
+3. Start the server: `node index.js`
 
-## Folder Structure
+## Setup server through the Docker
 
-- `frontend`: Frontend React code
-- `backend`: Backend Node.js code
+1. pull the docker image : `docker pull pruthiraj/lensloopserver`
+2. run the image : `docker run -d -p 4000:4000 pruthiraj/lensloopserver`
+
